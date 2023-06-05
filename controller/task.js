@@ -1,9 +1,17 @@
+const Task = require('../models/task');
+
 const getAllTasks = (req, res) => {
   res.send("All items");
 }
 
-const createTasks = (req, res) => {
-  res.send("Task created");
+const createTasks = async (req, res) => {
+  try{
+    const task = await Task.create(req.body);
+    res.status(201).json({task});
+
+  }catch(err){
+    res.status(500).json({msg: err})
+  }
 }
 
 const getTask = (req, res) => {
