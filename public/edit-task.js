@@ -6,7 +6,6 @@ const editBtnDOM = document.querySelector('.task-edit-btn')
 const formAlertDOM = document.querySelector('.form-alert')
 const params = window.location.search
 const id = new URLSearchParams(params).get('id')
-let tempName
 
 const showTask = async () => {
   try {
@@ -41,7 +40,6 @@ editFormDOM.addEventListener('submit', async (e) => {
       name: taskName,
       completed: taskCompleted,
     })
-
     const { _id: taskID, completed, name } = task
 
     taskIDDOM.textContent = taskID
@@ -54,7 +52,6 @@ editFormDOM.addEventListener('submit', async (e) => {
     formAlertDOM.textContent = `success, edited task`
     formAlertDOM.classList.add('text-success')
   } catch (error) {
-    console.error(error)
     taskNameDOM.value = tempName
     formAlertDOM.style.display = 'block'
     formAlertDOM.innerHTML = `error, please try again`
